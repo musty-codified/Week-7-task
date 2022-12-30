@@ -1,0 +1,14 @@
+<div class="messageSender" th:fragment="create_post">
+  <div class="">
+    <form class="messageSender__top" method="post" action="#" th:action="@{/create-post}" th:object="${user}">
+      <input type="hidden" name="user_id" th:field="*{user_id}" value="" th:value="${user.id}">
+      <input type="hidden" name="author" value="" th:value="${user.firstname}">
+      <textarea class="messageSender__input" name="messageSender__input" id="" cols="30" rows="10" placeholder="What's on your mind?" required></textarea>
+      <div class="messageSender__bottom">
+        <div class="btn">
+          <input type="submit" class="btn--blue submit" name="submit" value="Create post">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

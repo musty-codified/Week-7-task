@@ -1,0 +1,56 @@
+
+
+<div th:fragment="comment" class="container mt-5 mb-5" id="cmt-1">
+    <div class="d-flex justify-content-center row">
+        <div class="d-flex flex-column col-md-8">
+            <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4"></div>
+            <div class="comment-bottom bg-white p-2 px-4">
+                <form action="#" th:action="@{/create-comment}" th:if="${commentDTO}" th:object="${commentDTO}" method="post">
+                    <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+                        <img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="38">
+                        <input type="hidden" name="postId" th:attr="name='postId'" th:value="${post.id}" >
+                        <input type="hidden" name="commenterId" th:attr="name='commenterId'" th:value="${user.id}" >
+                        <input type="hidden" name="author" th:attr="name='author'" th:value="${user.firstname}">
+                        <input type="text" name="comment" class="form-control mr-3" placeholder="Add comment">
+<!--                        <input type="hidden" name="postID" class="form-control mr-3" value="" placeholder="Add comment">-->
+<!--                        <input type="hidden" name="commenterID" class="form-control mr-3" value="" placeholder="Add comment">-->
+                        <button class="btn btn-primary" type="submit">Comment</button>
+                    </div>
+                </form>
+
+                <div class="commented-section mt-2 border-bottom" style="padding-top: 20px;">
+                    <div class="d-flex flex-row align-items-center commented-user">
+                        <h5 class="mr-2">author name</h5><span class="dot mb-1"></span>
+                        <span class="mb-1 ml-2">comment time</span>
+                    </div>
+                    <div class="comment-text-sm">
+                        <span>comment content</span>
+                    </div>
+
+
+                    <div class="reply-section" id="comment-custom">
+                        <div class="d-flex flex-row align-items-center voting-icons" style="justify-content: space-evenly; padding: 10px 0; color: gray;">
+                                <span class="like-click commentLikes-<%=comment.getCommentId()%> post__option" style="display: flex">
+                                    <span class="material-icons" > thumb_up </span>
+                            <span class="ml-2" >9</span>
+                            </span>
+<!--                            <%&#45;&#45;                        Ensure that only owners of comments can edit and delete&#45;&#45;%>-->
+<!--                            <% if (Integer.valueOf(comment.getCommenterId()).equals(session.getAttribute("userID"))) { %>-->
+<!--                            <%&#45;&#45;                                <span class="material-icons post-edit post__option"> edit </span>&#45;&#45;%>-->
+                            <div class="post-delete comments__options-<%=comment.getCommentId()%> post__option">
+                                <span class="material-icons"> delete </span>
+                            </div>
+                        </div>
+                    </div>
+
+<!--                    <%&#45;&#45;                        <div class="edit_post" id="edit_comment-<%=comment.getCommentId()%>">&#45;&#45;%>-->
+<!--                    <%&#45;&#45;                            <%@include file="edit_comment.jsp"%>&#45;&#45;%>-->
+<!--                    <%&#45;&#45;                        </div>&#45;&#45;%>-->
+                </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+

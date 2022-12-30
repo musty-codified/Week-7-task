@@ -1,0 +1,45 @@
+.comment-display--none {
+    display: none;
+}
+.comment-hidden {
+    display: none;
+}
+.comment-display--none:checked ~ .comment-hidden {
+    display: inline-block;
+}
+
+.login-btn {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.comment-bottom {
+    box-shadow: 0px 5px 7px -7px rgb(0 0 0 / 75%);
+}
+
+#comment-custom {
+    padding-top: 5px;
+    padding-bottom: 25px !important;
+}
+.note-body-field {
+    background-color: #fdfcfc !important;
+    resize: none !important;
+    display: block;
+    outline: none;
+    height: 175px !important;
+    border-radius: 10px !important;
+}
+
+.edit_post {
+    display: none;
+}
+.edit_post_open {
+    display: block !important;
+}
+
+
+.d-flex.flex-column.col-md-8 {
+    -ms-flex: auto !important;
+    flex: auto !important;
+    max-width: 100% !important;
+}

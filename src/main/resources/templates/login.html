@@ -1,53 +1,70 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org ">
 <head>
-  <meta charset="ISO-8859-1">
-  <title>login</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../static/css/account.css" th:href="@{/css/account.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css" th:href="@{/css/index.css}">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" th:href="@{https://fonts.googleapis.com/css?family=Rubik}" rel="stylesheet">
+    <title>Sign In</title>
 </head>
 <body>
+<main>
+    <input type="hidden" id="status" value="">
+<!--    <%&#45;&#45;        <input type="hidden" id="status" value="<%=request.getSession().getAttribute("status")%>">&#45;&#45;%>-->
 
-
-<section>
-
-  <div class="container p-5">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <div class="card">
-          <div class="card-header text-center fs-4">Login Page</div>
-
-          <div th:if="${param.error}" class="alert alert-danger">
-            Invalid username & Password</div>
-
-          <div th:if="${param.logout}" class="alert alert-success">
-            Logout Successfully</div>
-
-          <div class="card-body">
-            <form action="/signin" method="post">
-
-              <div class="mb-3">
-                <label>Enter Email</label> <input type="text" name="username"
-                                                  class="form-control">
-              </div>
-
-
-              <div class="mb-3">
-                <label>Enter Password</label> <input type="text"
-                                                     name="password" class="form-control">
-              </div>
-              <button class="btn btn-primary col-md-12">Login</button>
-            </form>
-          </div>
+    <section class="container-account">
+        <div class="account-col1">
+<!--            <% session.removeAttribute("status");%>-->
+            <h1 class="account-title">Facebook</h1>
+            <p>Welcome back to our amazing community!</p>
         </div>
-      </div>
-    </div>
+        <div class="account-col2">
+            <div class="account-box">
+                <span th:if="${loginError}"  th:text="${loginError}"></span>
+                <form method="post" action="#" th:action="@{/login-user}" th:object="${user}" class="registration-form">
 
-  </div>
+                    <fieldset>
+
+                        <input type="email" name="email" class="input-fields" id="email" placeholder="Email address" required>
 
 
+                        <input type="password" name="password" class="input-fields" id="password" placeholder="Password" required>
 
-</section>
+                        <div class="btn">
+                            <input type="submit" class="btn--blue submit " name="submit" value="Sign in">
+                        </div>
 
+                        <div style="text-align: center">
+                            <a href="" style="text-decoration: none"><p>forgot your password?</p></a>
+                        </div>
 
+                        <div class="btn-hr">
+                        </div>
+
+                        <div class="btn">
+                            <a th:href="@{/register}" class="btn--green submit" >Create Account</a>
+                        </div>
+
+<!--                        <%&#45;&#45;                        <input type="submit" class="btn&#45;&#45;blue submit" name="submit" value="Sign up">&#45;&#45;%>-->
+
+                    </fieldset>
+
+                </form>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" th:attr="src=@{https://unpkg.com/sweetalert/dist/sweetalert.min.js}"></script>
+<link rel="stylesheet" href="alert/dist/sweetalert.css" th:href="@{alert/dist/sweetalert.css}">
+
+<script type="text/javascript">
+    let status = document.getElementById("status").value;
+
+    if (status == "failure") {
+        swal("Failed to login! Please check your details or create an account if you don't have one");
+    }
+</script>
 </body>
 </html>
